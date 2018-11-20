@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FutbolModelStoreContainer" CdmEntityContainer="futbolfinalEntities">
+    <EntitySetMapping Name="Equipoes">
+      <EntityTypeMapping TypeName="FutbolModel.Equipo">
+        <MappingFragment StoreEntitySet="Equipoes">
+          <ScalarProperty Name="equipoID" ColumnName="equipoID" />
+          <ScalarProperty Name="nomEquipo" ColumnName="nomEquipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EquiposFutbolistas">
+      <EntityTypeMapping TypeName="FutbolModel.EquipoFutbolista">
+        <MappingFragment StoreEntitySet="EquiposFutbolistas">
+          <ScalarProperty Name="equipoID" ColumnName="equipoID" />
+          <ScalarProperty Name="futbolistaID" ColumnName="futbolistaID" />
+          <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+          <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Futbolistas">
+      <EntityTypeMapping TypeName="FutbolModel.Futbolistas">
+        <MappingFragment StoreEntitySet="Futbolistas">
+          <ScalarProperty Name="futbolistaID" ColumnName="futbolistaID" />
+          <ScalarProperty Name="nomFutbolista" ColumnName="nomFutbolista" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

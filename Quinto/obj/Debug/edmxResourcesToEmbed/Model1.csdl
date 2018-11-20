@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FutbolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Equipo">
+    <Key>
+      <PropertyRef Name="equipoID" />
+    </Key>
+    <Property Name="equipoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomEquipo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="EquiposFutbolistas" Relationship="Self.FK__EquiposFu__equip__49C3F6B7" FromRole="Equipoes" ToRole="EquiposFutbolistas" />
+  </EntityType>
+  <EntityType Name="EquipoFutbolista">
+    <Key>
+      <PropertyRef Name="equipoID" />
+      <PropertyRef Name="futbolistaID" />
+    </Key>
+    <Property Name="equipoID" Type="Int32" Nullable="false" />
+    <Property Name="futbolistaID" Type="Int32" Nullable="false" />
+    <Property Name="fechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="fechaFin" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Equipoes" Relationship="Self.FK__EquiposFu__equip__49C3F6B7" FromRole="EquiposFutbolistas" ToRole="Equipoes" />
+    <NavigationProperty Name="Futbolistas" Relationship="Self.FK__EquiposFu__futbo__4AB81AF0" FromRole="EquiposFutbolistas" ToRole="Futbolistas" />
+  </EntityType>
+  <EntityType Name="Futbolistas">
+    <Key>
+      <PropertyRef Name="futbolistaID" />
+    </Key>
+    <Property Name="futbolistaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomFutbolista" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="EquiposFutbolistas" Relationship="Self.FK__EquiposFu__futbo__4AB81AF0" FromRole="Futbolistas" ToRole="EquiposFutbolistas" />
+  </EntityType>
+  <Association Name="FK__EquiposFu__equip__49C3F6B7">
+    <End Role="Equipoes" Type="FutbolModel.Equipo" Multiplicity="1" />
+    <End Role="EquiposFutbolistas" Type="FutbolModel.EquipoFutbolista" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipoes">
+        <PropertyRef Name="equipoID" />
+      </Principal>
+      <Dependent Role="EquiposFutbolistas">
+        <PropertyRef Name="equipoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EquiposFu__futbo__4AB81AF0">
+    <End Role="Futbolistas" Type="Self.Futbolistas" Multiplicity="1" />
+    <End Role="EquiposFutbolistas" Type="FutbolModel.EquipoFutbolista" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Futbolistas">
+        <PropertyRef Name="futbolistaID" />
+      </Principal>
+      <Dependent Role="EquiposFutbolistas">
+        <PropertyRef Name="futbolistaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="futbolfinalEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Equipoes" EntityType="FutbolModel.Equipo" />
+    <EntitySet Name="EquiposFutbolistas" EntityType="FutbolModel.EquipoFutbolista" />
+    <EntitySet Name="Futbolistas" EntityType="Self.Futbolistas" />
+    <AssociationSet Name="FK__EquiposFu__equip__49C3F6B7" Association="Self.FK__EquiposFu__equip__49C3F6B7">
+      <End Role="Equipoes" EntitySet="Equipoes" />
+      <End Role="EquiposFutbolistas" EntitySet="EquiposFutbolistas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EquiposFu__futbo__4AB81AF0" Association="Self.FK__EquiposFu__futbo__4AB81AF0">
+      <End Role="Futbolistas" EntitySet="Futbolistas" />
+      <End Role="EquiposFutbolistas" EntitySet="EquiposFutbolistas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
